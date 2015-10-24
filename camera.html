@@ -22,7 +22,7 @@
         $.get(BASE + BUTTONS[0] + "/feed", function(buttona) {
           $.get(BASE + BUTTONS[0] + "/counter", function(buttonb) {
             if (buttonb.counter > counter) {
-                ctx.drawImage(video, 0, 0, 640, 480);
+                ctx.drawImage(video, 0, 0, 1920, 1080);
             }
             counter = buttonb.counter;
             setTimeout(update, 1000);
