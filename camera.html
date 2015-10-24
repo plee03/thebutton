@@ -1,13 +1,16 @@
 <!DOCTYPE>
 <html>
 <head>
+  <meta charset="utf-8" />
   <title>Camera Test</title>
   <script>
-    navigator.mediaDevices.getUserMedia({video:true, audio: true},
+    v = navigator.mediaDevices.getUserMedia({video:true, audio: true});
+    v.then(
         function (stream) {
             var video = document.querySelector("video");
             video.src = window.URL.createObjectURL(stream);
-        }, function (e) {console.log("Fail")})
+        })
+    
   </script>
   <style>
     html, body { height: 100%; }
