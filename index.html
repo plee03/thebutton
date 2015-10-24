@@ -5,13 +5,19 @@
   <script src="https://code.jquery.com/jquery-1.11.0.js"></script>
   <script>
     var BASE = "https://api.bt.tn/2014-06/", BUTTONS = [4934, 3];
+    var counter = 0;
     $(function() {
       (function update() {
 	var date = new Date();
         $.get(BASE + BUTTONS[0] + "/feed", function(buttonA) {
-          $.get(BASE + BUTTONS[1] + "/feed", function(buttonB) {
-            $("body").html(Math.floor(date.getTime() / 1000) - buttonA.events[2].timestamp);
-            setTimeout(update, 50);
+          $.get(BASE + BUTTONS[0] + "/counter", function(buttonB) {
+            if (buttonB.counter > counter) {
+                body = document.getElementById("fire");
+                body.innerHTML += "Fire at " + date.toDateString() + " " + 
+                                  date.toTimeString() + "</br>";
+            }
+            counter = buttonB.counter;
+            setTimeout(update, 2000);
           });
         });
       })();
@@ -23,10 +29,10 @@
     body {
       display: table-cell;
       vertical-align: middle;
-      font: bold 20vw monospace;
+      font: bold 10 monospace;
     }
   </style>
 </head>
-<body>
+<body id=fire>
 </body>
 </html>
