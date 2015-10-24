@@ -22,7 +22,7 @@
                 $.get(BASE + BUTTONS[0] + "/feed", function(buttona) {
                     $.get(BASE + BUTTONS[0] + "/counter", function(buttonb) {
                         if (buttonb.counter > counter) {
-                            ctx.drawImage(video, 0, 0, 1080, 720);
+                            ctx.drawImage(video, 0, 0, 1200, 900);
                         }
                         counter = buttonb.counter;
                         setTimeout(update, 1000);
@@ -43,7 +43,7 @@
   </style>
 </head>
 <body onload="make_canvas();">
-<video autoplay> </video>
+<video width="1200" height="900" autoplay> </video>
 </br>
 <canvas id="canvas"> </canvas>
 </body>
