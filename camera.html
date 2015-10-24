@@ -10,6 +10,7 @@
         var video;
         v.then(
             function (stream) {
+                video = document.querySelector("video");
                 video.src = window.URL.createObjectURL(stream);
             });
         var canvas = document.getElementById("canvas");
