@@ -1,0 +1,25 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title>Camera Test</title>
+  <script>
+    navigator.getUserMedia({video:true, audio: true},
+        function (stream) {
+            var video = document.querySelector("video");
+            video.src = window.URL.createObjectURL(stream);
+        })
+  </script>
+  <style>
+    html, body { height: 100%; }
+    html { display: table; margin: auto;  }
+    body {
+      display: table-cell;
+      vertical-align: middle;
+      font: bold 10 monospace;
+    }
+  </style>
+</head>
+<body>
+</body>
+</html>
+
