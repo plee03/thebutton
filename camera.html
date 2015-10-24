@@ -3,14 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <title>Camera Test</title>
+  <script src="https://code.jquery.com/jquery-1.11.0.js"></script>
   <script>
-    v = navigator.mediaDevices.getUserMedia({video:true, audio: true});
+    function make_canvas() {
+    var v = navigator.mediaDevices.getUserMedia({video:true, audio: true});
     v.then(
         function (stream) {
             var video = document.querySelector("video");
             video.src = window.URL.createObjectURL(stream);
-        })
-    
+        });
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var BASE = "https://api.bt.tn/2014-06/", BUTTONS = [4934, 3];
+    var counter = 0; 
+    $(function() {
+      (function update() {
+        $.get(BASE + BUTTONS[0] + "/feed", function(buttona) {
+          $.get(BASE + BUTTONS[0] + "/counter", function(buttonb) {
+            if (buttonb.counter > counter) {
+                ctx.drawImage(video, 0, 0, 640, 480);
+            }
+            counter = buttonb.counter;
+            setTimeout(update, 1000);
+          });
+        });
+      })();
+    })
+    }
   </script>
   <style>
     html, body { height: 100%; }
@@ -22,8 +41,9 @@
     }
   </style>
 </head>
-<body>
+<body onload="make_canvas();">
 <video autoplay> </video>
+<canvas id="canvas"> </canvas>
 </body>
 </html>
 
