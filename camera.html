@@ -7,9 +7,10 @@
   <script>
     function make_canvas() {
     var v = navigator.mediaDevices.getUserMedia({video:true, audio: true});
+    var video;
     v.then(
         function (stream) {
-            var video = document.querySelector("video");
+            video = document.querySelector("video");
             video.src = window.URL.createObjectURL(stream);
         });
     var canvas = document.getElementById("canvas");
