@@ -1,0 +1,32 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title>bt.tn Duel</title>
+  <script src="https://code.jquery.com/jquery-1.11.0.js"></script>
+  <script>
+    var BASE = "https://api.bt.tn/2014-06/", BUTTONS = [4934, 3];
+    $(function() {
+      (function update() {
+	var date = new Date();
+        $.get(BASE + BUTTONS[0] + "/feed", function(buttonA) {
+          $.get(BASE + BUTTONS[1] + "/feed", function(buttonB) {
+            $("body").html(Math.floor(date.getTime() / 1000) - buttonA.events[2].timestamp);
+            setTimeout(update, 50);
+          });
+        });
+      })();
+    })
+  </script>
+  <style>
+    html, body { height: 100%; }
+    html { display: table; margin: auto;  }
+    body {
+      display: table-cell;
+      vertical-align: middle;
+      font: bold 20vw monospace;
+    }
+  </style>
+</head>
+<body>
+</body>
+</html>
